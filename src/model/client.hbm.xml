@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model">
+    <class name="Client" table="Client">
+        <id name="id" column="id"></id>
+        <property name="surname" column="surname"/>
+        <property name="name" column="name"/>
+        <property name="patronymic" column="patronymic"/>
+        <property name="birthday" column="birthday"/>
+        <property name="accNumber" column="account_number"/>
+    </class>
+</hibernate-mapping>
