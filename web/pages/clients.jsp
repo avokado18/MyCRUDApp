@@ -2,9 +2,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html ng-app>
 <head>
     <title>Clients</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
 </head>
 <body>
 <table>
@@ -40,8 +42,9 @@
 <form method="post" action="/add" >
     <table>
         <tr>
-            <td><label for="Id">Id</label></td>
-            <td><input id="Id" name="Id"/></td>
+            <td><label for="Id" >Id</label></td>
+            <td><input id="Id" name="Id" ng-model="id"/></td>
+            <td><label><p>{{id}}</p></label></td>
         </tr>
         <tr>
             <td><label for="Surname">Surname</label></td>
