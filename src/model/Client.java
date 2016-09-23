@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Client {
+public class Client{
     private int id;
     private String surname;
     private String name;

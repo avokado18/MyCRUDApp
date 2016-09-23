@@ -3,6 +3,8 @@ package service;
 import model.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.jaxb.hbm.spi.SecondaryTableContainer;
+import org.hibernate.type.IntegerType;
 
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class ClientService {
     public Client getClientById(int id){
         Session session = seccionFactory.openSession();
         session.beginTransaction();
-        Client client=(Client)session.load(Client.class, id);
+        Client client=(Client)session.get(Client.class, new Integer(id));
         session.getTransaction().commit();
         return client;
     }

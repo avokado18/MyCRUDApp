@@ -24,11 +24,11 @@
 
     <servlet-mapping>
         <servlet-name>appServlet</servlet-name>
-        <url-pattern>/clients/*</url-pattern>
+        <url-pattern>/client/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>/js/index.html</welcome-file>
+        <welcome-file>/test/index.html</welcome-file>
     </welcome-file-list>
 
     <filter>
