@@ -3,34 +3,31 @@ package service;
 import model.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.jaxb.hbm.spi.SecondaryTableContainer;
-import org.hibernate.type.IntegerType;
-
 import java.util.List;
 
 public class ClientService {
-    private SessionFactory seccionFactory;
+    private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory seccionFactory){
-        this.seccionFactory = seccionFactory;
+    public void setSessionFactory(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
     }
 
     public void addClient(Client client) {
-        Session session = seccionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(client);
         session.getTransaction().commit();
     }
 
     public void updateClient(Client client) {
-        Session session = seccionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(client);
         session.getTransaction().commit();
     }
 
     public List<Client> getAllClients() {
-        Session session = seccionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<Client> result = session.createQuery("from Client").list();
         session.getTransaction().commit();
@@ -38,7 +35,7 @@ public class ClientService {
     }
 
     public Client getClientById(int id){
-        Session session = seccionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         Client client=(Client)session.get(Client.class, new Integer(id));
         session.getTransaction().commit();
@@ -46,9 +43,9 @@ public class ClientService {
     }
 
     public void deleteClient(int id){
-        Session session = seccionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Client client = (Client)session.load(Client.class, new Integer(id));
+        Client client=(Client)session.load(Client.class, new Integer(id));
         if (client!=null)
             session.delete(client);
         session.getTransaction().commit();
