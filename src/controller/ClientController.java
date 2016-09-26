@@ -8,38 +8,38 @@ import java.util.List;
 @RestController
 @RequestMapping("clients")
 public class ClientController{
-    ClientService clientServiceCtrl;
+    ClientService clientService;
 
-    public void setClientService(ClientService clientServiceCtrl) {
-        this.clientServiceCtrl = clientServiceCtrl;
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Client>  listClient(){
-        List<Client> clients = clientServiceCtrl.getAllClients();
+        List<Client> clients = clientService.getAllClients();
         return clients;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Client  clientById(@PathVariable(value = "id") String id){
-        Client client = clientServiceCtrl.getClientById(Integer.parseInt(id));
+        Client client = clientService.getClientById(Integer.parseInt(id));
         return client;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Client createClient(@RequestBody Client client){
-        clientServiceCtrl.addClient(client);
+        clientService.addClient(client);
         return client;
     }
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public String updateClient(@PathVariable(value = "id") String id){
-        clientServiceCtrl.updateClient(clientServiceCtrl.getClientById(Integer.parseInt(id)));
+        clientService.updateClient(clientService.getClientById(Integer.parseInt(id)));
         return id;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteClient(@PathVariable(value = "id") String id){
-        clientServiceCtrl.deleteClient(Integer.parseInt(id));
+        clientService.deleteClient(Integer.parseInt(id));
         return id;
     }
 }
