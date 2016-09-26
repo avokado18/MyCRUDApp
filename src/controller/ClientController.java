@@ -31,10 +31,10 @@ public class ClientController{
         clientService.addClient(client);
         return client;
     }
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public String updateClient(@PathVariable(value = "id") String id){
-        clientService.updateClient(clientService.getClientById(Integer.parseInt(id)));
-        return id;
+    @RequestMapping(value = "", method = RequestMethod.PUT)
+    public Client updateClient(@RequestBody Client client){
+        clientService.updateClient(client);
+        return client;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.webjars.npm:ng-dialog:0.6.0" type="repository">
+    <properties maven-id="org.webjars.npm:ng-dialog:0.6.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ng-dialog-0.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
