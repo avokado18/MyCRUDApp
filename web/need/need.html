@@ -1,0 +1,91 @@
+<div ng-show="edit==-1">
+    <h3>Add client</h3>
+    <form ng-submit="Add()">
+        <table>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='id'>Id:</label></td>
+                    <td><input required id='id' class='form-control' ng-model="newclient.id" type='number'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='surname'>Surname:</label></td>
+                    <td><input required id='surname' class='form-control' ng-model='newclient.surname' type='text'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='name'>Name:</label></td>
+                    <td><input required id='name' class='form-control' ng-model='newclient.name' type='text'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='patronymic'>Patronymic:</label></td>
+                    <td><input required id='patronymic' class='form-control' ng-model='newclient.patronymic' type='text'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='birthday'>Birthday:</label></td>
+                    <td><input required id='birthday' class='form-control' ng-model='newclient.birthday' type='date'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='accNumber'>Account Number:</label></td>
+                    <td><input required id='accNumber' class='form-control' ng-model='newclient.accNumber' type='number'></td>
+                </div>
+            </tr>
+
+        </table>
+        <input type="submit" value="Add">
+    </form>
+</div>
+<div ng-hide="edit==-1">
+    <h3>Edit client</h3>
+    <form ng-submit="Edit()">
+        <table>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='_id'>Id:</label></td>
+                    <td><input required id='_id' class='form-control' ng-model='oldclient.id' type='number' disabled value="{{edit}}"></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='_surname'>Surname:</label></td>
+                    <td><input required id='_surname' class='form-control' ng-model='oldclient.surname' type='text'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='_name'>Name:</label></td>
+                    <td><input required id='_name' class='form-control' ng-model='oldclient.name' type='text'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='_patronymic'>Patronymic:</label></td>
+                    <td><input required id='_patronymic' class='form-control' ng-model='oldclient.patronymic' type='text'></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label>Birthday:</label></td>
+                    <td><label>{{oldclient.birthday | date:'yyyy-MM-dd' }}</label></td>
+                </div>
+            </tr>
+            <tr>
+                <div class='form-group'>
+                    <td><label for='_accNumber'>Account number:</label></td>
+                    <td><input required id='_accNumber' class='form-control' ng-model='oldclient.accNumber' type='number'></td>
+                </div>
+            </tr>
+
+        </table>
+
+        <input type="submit" value="Save">
+    </form>
+</div>

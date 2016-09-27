@@ -28,7 +28,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>/test/index.html</welcome-file>
+        <welcome-file>/test/newIndex.html</welcome-file>
     </welcome-file-list>
 
     <filter>
