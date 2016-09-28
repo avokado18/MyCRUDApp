@@ -42,5 +42,6 @@
     <orderEntry type="library" name="org.webjars.npm:ng-dialog:0.6.0" level="project" />
     <orderEntry type="library" name="jquery-1.11.3" level="application" />
     <orderEntry type="library" name="jquery.mobile-1.4.5" level="application" />
+    <orderEntry type="library" name="angular-messages" level="application" />
   </component>
 </module>

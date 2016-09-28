@@ -1,128 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:text-align="http://www.w3.org/1999/xhtml">
 <head>
     <title>Clients</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-messages.min.js"></script>
     <script src="/test/controller.js"></script>
-    <link rel='stylesheet' href='/css/css.css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/css/style.css'/>
     <meta charset="utf-8">
 </head>
-<body ng-app="clientApp" ng-controller="ClientList">
-<table>
+<body ng-app="clientApp" ng-controller="ClientList" class="container">
+<h3 align="center">All clients</h3>
+<table class="table table-striped table-bordered table-hover table-condensed">
+
     <tr>
-        <th>Id</th>
-        <th>Surname</th>
-        <th>Name</th>
-        <th>Patronymic</th>
-        <th>Birthday</th>
-        <th>Account number</th>
-        <th>Change</th>
+        <th style="text-align: center"> Id </th>
+        <th style="text-align: center"> Surname </th>
+        <th style="text-align: center"> Name </th>
+        <th style="text-align: center"> Patronymic </th>
+        <th style="text-align: center"> Birthday </th>
+        <th style="text-align: center"> Account number </th>
+        <th style="text-align: center"> Change </th>
     </tr>
     <tr ng-repeat="client in clients" ng-form="delete">
-        <td align="center">{{client.id}}</td>
-        <td align="center">{{client.surname}}</td>
-        <td align="center">{{client.name}}</td>
-        <td align="center">{{client.patronymic}}</td>
-        <td align="center">{{client.birthday| date:'dd.MM.yyyy'}}</td>
-        <td align="center">{{client.accNumber}}</td>
-        <td align="center">
-            <button ng-click="EditClick(client.id)">Edit</button>
-            <button ng-click="Delete(client.id)">Delete</button>
+        <td>{{client.id}}</td>
+        <td>{{client.surname}}</td>
+        <td>{{client.name}}</td>
+        <td>{{client.patronymic}}</td>
+        <td>{{client.birthday| date:'dd.MM.yyyy'}}</td>
+        <td>{{client.accNumber}}</td>
+        <td>
+            <button class="btn btn-link" ng-click="EditClick(client.id)">Edit</button>
+            <button class="btn btn-link" ng-click="Delete(client.id)">Delete</button>
         </td>
     </tr>
 </table>
-<div ng-show="edit==-1">
-    <h3>Add client</h3>
-    <form ng-submit="Add()">
-        <table>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='id'>Id:</label></td>
-                    <td><input required id='id' class='form-control' ng-model="newclient.id" type='number'></td>
-                </div>
-            </tr>
-            <tr>
-            <div class='form-group'>
-                <td><label for='surname'>Surname:</label></td>
-                <td><input required id='surname' class='form-control' ng-model='newclient.surname' type='text'></td>
-            </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='name'>Name:</label></td>
-                    <td><input required id='name' class='form-control' ng-model='newclient.name' type='text'></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='patronymic'>Patronymic:</label></td>
-                    <td><input required id='patronymic' class='form-control' ng-model='newclient.patronymic' type='text'></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='birthday'>Birthday:</label></td>
-                    <td><input required id='birthday' class='form-control' ng-model='newclient.birthday' type='date'></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='accNumber'>Account Number:</label></td>
-                    <td><input required id='accNumber' class='form-control' ng-model='newclient.accNumber' type='number'></td>
-                </div>
-            </tr>
-
-        </table>
-        <input type="submit" value="Add">
-    </form>
+<div class="container">
+    <button class="btn btn-info" ng-click="AddClick()">{{ AddMessage }}</button>
 </div>
-<div ng-hide="edit==-1">
-    <h3>Edit client</h3>
-    <form ng-submit="Edit()">
-        <table>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='_id'>Id:</label></td>
-                    <td><input required id='_id' class='form-control' ng-model='oldclient.id' type='number' disabled value="{{edit}}"></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='_surname'>Surname:</label></td>
-                    <td><input required id='_surname' class='form-control' ng-model='oldclient.surname' type='text'></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='_name'>Name:</label></td>
-                    <td><input required id='_name' class='form-control' ng-model='oldclient.name' type='text'></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='_patronymic'>Patronymic:</label></td>
-                    <td><input required id='_patronymic' class='form-control' ng-model='oldclient.patronymic' type='text'></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label>Birthday:</label></td>
-                    <td><label>{{oldclient.birthday | date:'yyyy-MM-dd'}}</label></td>
-                </div>
-            </tr>
-            <tr>
-                <div class='form-group'>
-                    <td><label for='_accNumber'>Account number:</label></td>
-                    <td><input required id='_accNumber' class='form-control' ng-model='oldclient.accNumber' type='number'></td>
-                </div>
-            </tr>
+<pop-up-dialog></pop-up-dialog>
 
-        </table>
-
-        <input type="submit" value="Save">
-    </form>
-</div>
 </body>
 </html>

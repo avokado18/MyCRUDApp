@@ -1,0 +1,33 @@
+<div id="popUpDialog-bg"  ng-show="showPopUpDialog">
+    <div id="popUpDialog">
+        <h1>{{ AddOrEditMessage }}</h1>
+        <form id="myForm" name="myForm" ng-submit="AddOrEdit(ifTrueThenAdd)">
+            <div class='form-group' class="content">
+                <label for='_id'>Id:</label>
+                <input required id='_id' class='form-control' ng-model='newclient.id' type='number' ng-disabled="!ifTrueThenAdd">
+            </div>
+            <div class='form-group' class="content">
+                <label for='_surname'>Surname:</label>
+                <input required id='_surname' class='form-control' ng-model='newclient.surname' type='text'>
+            </div>
+            <div class='form-group' class="content">
+                <label for='_name'>Name:</label>
+                <input required id='_name' class='form-control' ng-model='newclient.name' type='text'>
+            </div>
+            <div class='form-group' class="content">
+                <label for='_patronymic'>Patronymic:</label>
+                <input required id='_patronymic' class='form-control' ng-model='newclient.patronymic' type='text'>
+            </div>
+            <div class='form-group' class="content">
+                <label for='_birthday'>Birthday:</label>
+                <input required id='_birthday' name='_birthday' class='form-control' ng-model='string' type='date' value="{{newclient.birthday| date:'yyyy-MM-dd'}}">
+            </div>
+            <div class='form-group' class="content">
+                <label for='_accNumber'>Account number:</label>
+                <input required id='_accNumber' class='form-control' ng-model='newclient.accNumber' type='number'>
+            </div>
+            <input type="submit" class="btn btn-success btn-md" value="Save" ng-disabled="myForm.$invalid && ifTrueThenAdd"/>
+            <button class="btn btn-danger btn-md" ng-click="closePopUpDialog()">Close</button>
+        </form>
+    </div>
+</div>
