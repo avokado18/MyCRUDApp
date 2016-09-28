@@ -5,6 +5,7 @@
             <div class='form-group' class="content">
                 <label for='_id'>Id:</label>
                 <input required id='_id' class='form-control' ng-model='newclient.id' type='number' ng-disabled="!ifTrueThenAdd" >
+                <span ng-while="myForm._id != client.id" style="color:red" ng-show="myForm._id == client.id && !myForm._id.$pristine"> exists </span>
             </div>
             <div class='form-group' class="content">
                 <label for='_surname'>Surname:</label>
@@ -21,6 +22,7 @@
             <div class='form-group' class="content">
                 <label for='_birthday'>Birthday:</label>
                 <input required id='_birthday' name='_birthday' class='form-control' ng-model='string' type='date' value="{{newclient.birthday| date:'yyyy-MM-dd'}}" min="1916-01-01" max="2004-01-01">
+                <span style="color:red" ng-show="myForm._birthday.$invalid && !myForm._birthday.$pristine">incorrect age</span>
             </div>
 
 
