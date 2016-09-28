@@ -4,7 +4,7 @@
         <form id="myForm" name="myForm" ng-submit="AddOrEdit(ifTrueThenAdd)">
             <div class='form-group' class="content">
                 <label for='_id'>Id:</label>
-                <input required id='_id' class='form-control' ng-model='newclient.id' type='number' ng-disabled="!ifTrueThenAdd">
+                <input required id='_id' class='form-control' ng-model='newclient.id' type='number' ng-disabled="!ifTrueThenAdd" >
             </div>
             <div class='form-group' class="content">
                 <label for='_surname'>Surname:</label>
@@ -20,8 +20,10 @@
             </div>
             <div class='form-group' class="content">
                 <label for='_birthday'>Birthday:</label>
-                <input required id='_birthday' name='_birthday' class='form-control' ng-model='string' type='date' value="{{newclient.birthday| date:'yyyy-MM-dd'}}">
+                <input required id='_birthday' name='_birthday' class='form-control' ng-model='string' type='date' value="{{newclient.birthday| date:'yyyy-MM-dd'}}" min="1916-01-01" max="2004-01-01">
             </div>
+
+
             <div class='form-group' class="content">
                 <label for='_accNumber'>Account number:</label>
                 <input required id='_accNumber' class='form-control' ng-model='newclient.accNumber' type='number'>

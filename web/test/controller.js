@@ -27,7 +27,7 @@ clientApp.directive('popUpDialog', function () {
         restrict:'E',
         scope:false,
         templateUrl:'/test/addEditForm.html',
-        controller:function($scope, $route, Clients){
+        controller:function($scope, $route, Clients) {
             var EditMessage = 'Edit client';
             $scope.AddOrEditMessage = $scope.AddMessage;
             $scope.showPopUpDialog = false;
@@ -36,8 +36,8 @@ clientApp.directive('popUpDialog', function () {
                 $scope.showPopUpDialog = true;
                 $scope.ifTrueThenAdd = false;
                 $scope.AddOrEditMessage = EditMessage;
-                $scope.newclient = Clients.get({clientId:id});
-            }
+                $scope.newclient = Clients.get({clientId: id});
+            };
             $scope.AddOrEdit = function (add) {
                 $scope.newclient.birthday = document.getElementById('_birthday').value;
                 if (add)
@@ -45,24 +45,24 @@ clientApp.directive('popUpDialog', function () {
                 else
                     $scope.Edit();
                 $scope.showPopUpDialog = false;
-            }
+            };
             $scope.Add = function () {
                 document.getElementById('myForm').reset();
                 Clients.save($scope.newclient);
                 $scope.clients = Clients.query();
                 $route.reload();
-            }
+            };
             $scope.Edit = function () {
                 document.getElementById('myForm').reset();
                 Clients.update($scope.newclient);
-                $scope.edit = -1;
                 $scope.clients = Clients.query();
                 $route.reload();
-            }
-            $scope.closePopUpDialog = function(){
+            };
+            $scope.closePopUpDialog = function () {
                 document.getElementById('myForm').reset();
                 $scope.showPopUpDialog = false;
             }
         }
     }
 });
+
