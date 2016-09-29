@@ -4,28 +4,26 @@
         <form id="myForm" name="myForm" ng-submit="AddOrEdit(ifTrueThenAdd)">
             <div class='form-group' class="content">
                 <label for='_id'>Id:</label>
-                <input required id='_id' class='form-control' ng-model='newclient.id' type='number' ng-disabled="!ifTrueThenAdd" >
-                <span ng-while="myForm._id != client.id" style="color:red" ng-show="myForm._id == client.id && !myForm._id.$pristine"> exists </span>
+                <input name="_id" ng-model-options="{ debounce: 500 }" required id='_id' class='form-control' ng-model='newclient.id' type='number' ng-disabled="!ifTrueThenAdd" validation/>
+                <span style="color:red" ng-show="myForm._id.$invalid && !myForm._id.$pristine">exists</span>
             </div>
             <div class='form-group' class="content">
                 <label for='_surname'>Surname:</label>
-                <input required id='_surname' class='form-control' ng-model='newclient.surname' type='text'>
+                <input onkeyup="this.value=this.value.replace(/[^\D\.]+/g,'')" required id='_surname' class='form-control' ng-model='newclient.surname' type='text'>
             </div>
             <div class='form-group' class="content">
                 <label for='_name'>Name:</label>
-                <input required id='_name' class='form-control' ng-model='newclient.name' type='text'>
+                <input onkeyup="this.value=this.value.replace(/[^\D\.]+/g,'')" required id='_name' class='form-control' ng-model='newclient.name' type='text'>
             </div>
             <div class='form-group' class="content">
                 <label for='_patronymic'>Patronymic:</label>
-                <input required id='_patronymic' class='form-control' ng-model='newclient.patronymic' type='text'>
+                <input onkeyup="this.value=this.value.replace(/[^\D\.]+/g,'')" required id='_patronymic' class='form-control' ng-model='newclient.patronymic' type='text'>
             </div>
             <div class='form-group' class="content">
                 <label for='_birthday'>Birthday:</label>
                 <input required id='_birthday' name='_birthday' class='form-control' ng-model='string' type='date' value="{{newclient.birthday| date:'yyyy-MM-dd'}}" min="1916-01-01" max="2004-01-01">
                 <span style="color:red" ng-show="myForm._birthday.$invalid && !myForm._birthday.$pristine">incorrect age</span>
             </div>
-
-
             <div class='form-group' class="content">
                 <label for='_accNumber'>Account number:</label>
                 <input required id='_accNumber' class='form-control' ng-model='newclient.accNumber' type='number'>

@@ -20,6 +20,13 @@ clientApp.controller('ClientList', function ($scope, $http, Clients) {
         Clients.delete({clientId:id});
         $scope.clients = Clients.query();
         $route.reload();
+    };
+    $scope.Check = function () {
+        return false;
+        if (!document.myForm.idinput.$error.check){
+            return true;
+        }
+        return false;
     }
 });
 clientApp.directive('popUpDialog', function () {
@@ -65,4 +72,32 @@ clientApp.directive('popUpDialog', function () {
         }
     }
 });
-
+clientApp.directive('validation', function() {
+    return {
+        require: 'ngModel',
+        link: function($scope, element, attr, ClientList) {
+            function myValidation(value) {
+                $scope.ids = [];
+                $scope.clients.forEach(function(cl) {
+                    $scope.ids.push(cl.id);
+                });
+                if (ClientList.$isEmpty(value)) {
+                    ClientList.$setValidity('unique', true);
+                }
+                var ok = true;
+                $scope.ids.forEach(function(id) {
+                    if (id == value){
+                        ok = false;
+                    }
+                });
+                if (ok){
+                    ClientList.$setValidity('unique', true);
+                } else {
+                    ClientList.$setValidity('unique', false);
+                }
+                return value;
+            }
+            ClientList.$parsers.push(myValidation);
+        }
+    };
+});
