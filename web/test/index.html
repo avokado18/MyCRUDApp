@@ -14,11 +14,11 @@
 <body ng-app="clientApp" ng-controller="ClientList" class="container">
 <h3 align="left">All clients</h3>
 <br>
+<p>Enter to find: <input type="text" ng-model="search"></p>
 <br>
 <table class="table table-striped table-bordered table-hover table-condensed">
-
     <tr>
-        <th style="text-align: center"> Id </th>
+        <th style="text-align: center"> ID </th>
         <th style="text-align: center"> Surname </th>
         <th style="text-align: center"> Name </th>
         <th style="text-align: center"> Patronymic </th>
@@ -26,7 +26,7 @@
         <th style="text-align: center"> Account number </th>
         <th style="text-align: center"> Change </th>
     </tr>
-    <tr ng-repeat="client in clients" ng-form="delete">
+    <tr ng-repeat="client in clients | filter:search | startFrom: startingItem() | limitTo: itemsPerPage" ng-form="delete">
         <td>{{client.id}}</td>
         <td>{{client.surname}}</td>
         <td>{{client.name}}</td>
@@ -39,6 +39,11 @@
         </td>
     </tr>
 </table>
+<div id="pagination" class="row">
+    <button class="pull-left btn btn-primary btn-sm" ng-disabled="firstPage()" ng-click="pageBack()">Назад</button>
+    <span>{{currentPage+1}} из {{numberOfPages()}}</span>
+    <button class="pull-right  btn btn-primary btn-sm" ng-disabled="lastPage()" ng-click="pageForward()">Вперед</button>
+</div>
 <div class="container">
     <button class="btn btn-info" ng-click="AddClick()">{{ AddMessage }}</button>
 </div>

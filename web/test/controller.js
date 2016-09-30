@@ -21,12 +21,32 @@ clientApp.controller('ClientList', function ($scope, $http, Clients) {
         $scope.clients = Clients.query();
         $route.reload();
     };
-    $scope.Check = function () {
-        return false;
-        if (!document.myForm.idinput.$error.check){
-            return true;
-        }
-        return false;
+    $scope.sort = {
+        column: 'ID',
+        descending: false
+    };
+
+
+    $scope.currentPage = 0;
+    $scope.itemsPerPage = 5;
+    $scope.firstPage = function() {
+        return $scope.currentPage == 0;
+    };
+    $scope.lastPage = function() {
+        var lastPageNum = Math.ceil($scope.clients.length / $scope.itemsPerPage - 1);
+        return $scope.currentPage == lastPageNum;
+    };
+    $scope.numberOfPages = function(){
+        return Math.ceil($scope.clients.length / $scope.itemsPerPage);
+    };
+    $scope.startingItem = function() {
+        return $scope.currentPage * $scope.itemsPerPage;
+    };
+    $scope.pageBack = function() {
+        $scope.currentPage = $scope.currentPage - 1;
+    };
+    $scope.pageForward = function() {
+        $scope.currentPage = $scope.currentPage + 1;
     }
 });
 clientApp.directive('popUpDialog', function () {
@@ -69,6 +89,7 @@ clientApp.directive('popUpDialog', function () {
                 document.getElementById('myForm').reset();
                 $scope.showPopUpDialog = false;
             }
+
         }
     }
 });
@@ -85,11 +106,13 @@ clientApp.directive('validation', function() {
                     ClientList.$setValidity('unique', true);
                 }
                 var ok = true;
-                $scope.ids.forEach(function(id) {
-                    if (id == value){
+                var i=0;
+                while(i<$scope.ids.length && ok){
+                    if ($scope.ids[i] == value){
                         ok = false;
                     }
-                });
+                    i++;
+                }
                 if (ok){
                     ClientList.$setValidity('unique', true);
                 } else {
