@@ -10,5 +10,6 @@
         <property name="patronymic" column="patronymic"/>
         <property name="birthday" column="birthday"/>
         <property name="accNumber" column="account_number"/>
+        <property name="balance" column="balance"/>
     </class>
 </hibernate-mapping>

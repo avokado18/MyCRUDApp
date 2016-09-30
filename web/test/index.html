@@ -24,26 +24,26 @@
         <th style="text-align: center"> Patronymic </th>
         <th style="text-align: center"> Birthday </th>
         <th style="text-align: center"> Account number </th>
+        <th style="text-align: center"> Balance, $ </th>
+        <th style="text-align: center"> Balance, R </th>
         <th style="text-align: center"> Change </th>
     </tr>
-    <tr ng-repeat="client in clients | filter:search | startFrom: startingItem() | limitTo: itemsPerPage" ng-form="delete">
+    <tr ng-repeat="client in clients | filter:search" ng-form="delete">
         <td>{{client.id}}</td>
         <td>{{client.surname}}</td>
         <td>{{client.name}}</td>
         <td>{{client.patronymic}}</td>
         <td>{{client.birthday| date:'dd.MM.yyyy'}}</td>
         <td>{{client.accNumber}}</td>
+        <td>{{client.balance}}</td>
+        <td>{{client.balance * 70}}</td>
         <td>
             <button class="btn btn-link" ng-click="EditClick(client.id)">Edit</button>
             <button class="btn btn-link" ng-click="Delete(client.id)">Delete</button>
         </td>
     </tr>
 </table>
-<div id="pagination" class="row">
-    <button class="pull-left btn btn-primary btn-sm" ng-disabled="firstPage()" ng-click="pageBack()">Назад</button>
-    <span>{{currentPage+1}} из {{numberOfPages()}}</span>
-    <button class="pull-right  btn btn-primary btn-sm" ng-disabled="lastPage()" ng-click="pageForward()">Вперед</button>
-</div>
+
 <div class="container">
     <button class="btn btn-info" ng-click="AddClick()">{{ AddMessage }}</button>
 </div>

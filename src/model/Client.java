@@ -9,6 +9,7 @@ public class Client{
     private String patronymic;
     private Date birthday;
     private int accNumber;
+    private double balance;
 
     public Client() {
     }
@@ -59,6 +60,14 @@ public class Client{
 
     public void setAccNumber(int accNumber) {
         this.accNumber = accNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     @Override

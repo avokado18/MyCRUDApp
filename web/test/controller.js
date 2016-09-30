@@ -7,7 +7,7 @@ clientApp.factory('Clients',[
         );
     }
 ]);
-clientApp.controller('ClientList', function ($scope, $http, Clients) {
+clientApp.controller('ClientList', function ($scope, Clients, $route) {
     $scope.clients = Clients.query();
     $scope.AddMessage = 'Add new client';
 
@@ -21,33 +21,6 @@ clientApp.controller('ClientList', function ($scope, $http, Clients) {
         $scope.clients = Clients.query();
         $route.reload();
     };
-    $scope.sort = {
-        column: 'ID',
-        descending: false
-    };
-
-
-    $scope.currentPage = 0;
-    $scope.itemsPerPage = 5;
-    $scope.firstPage = function() {
-        return $scope.currentPage == 0;
-    };
-    $scope.lastPage = function() {
-        var lastPageNum = Math.ceil($scope.clients.length / $scope.itemsPerPage - 1);
-        return $scope.currentPage == lastPageNum;
-    };
-    $scope.numberOfPages = function(){
-        return Math.ceil($scope.clients.length / $scope.itemsPerPage);
-    };
-    $scope.startingItem = function() {
-        return $scope.currentPage * $scope.itemsPerPage;
-    };
-    $scope.pageBack = function() {
-        $scope.currentPage = $scope.currentPage - 1;
-    };
-    $scope.pageForward = function() {
-        $scope.currentPage = $scope.currentPage + 1;
-    }
 });
 clientApp.directive('popUpDialog', function () {
     return{
@@ -102,9 +75,6 @@ clientApp.directive('validation', function() {
                 $scope.clients.forEach(function(cl) {
                     $scope.ids.push(cl.id);
                 });
-                if (ClientList.$isEmpty(value)) {
-                    ClientList.$setValidity('unique', true);
-                }
                 var ok = true;
                 var i=0;
                 while(i<$scope.ids.length && ok){
